@@ -35,7 +35,7 @@ class Login extends IntlComponent {
     //     this.props.login(payload)
     //   }
     // })
-    history.push('/app')
+    history.push('/app/overview')
   }
 
   render() {

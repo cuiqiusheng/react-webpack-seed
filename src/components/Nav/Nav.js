@@ -9,8 +9,6 @@ import { Menu } from 'antd'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import { getUserInfo } from 'Containers/User/actions'
-
 import navNodes from './navConfig'
 import style from './style.scss'
 
@@ -27,13 +25,10 @@ const Logo = () => <div className={style.logo} />
 
 class Nav extends React.Component {
   static propTypes = {
-    getUserInfo: PropTypes.func.isRequired,
-
     // role: PropTypes.any,
     // roleResources: PropTypes.object,
     // loadRoleResources: PropTypes.func,
     location: PropTypes.object,
-    userInfo: PropTypes.object,
   }
 
   static defaultProps = {
@@ -41,7 +36,6 @@ class Nav extends React.Component {
     // roleResources: {},
     // loadRoleResources: null,
     location: {},
-    userInfo: {},
   }
 
   constructor(props) {
@@ -49,10 +43,6 @@ class Nav extends React.Component {
     this.state = {
       current: this.pathRoute(location.pathname)
     }
-  }
-
-  componentWillMount() {
-    this.props.getUserInfo()
   }
 
   componentWillReceiveProps() {
@@ -78,17 +68,17 @@ class Nav extends React.Component {
   }
 
   menuAccessAllowed = menuConfig => {
-    const { role } = this.props.userInfo || []
+    const { role } = []
     const { permissions } = menuConfig
     return permissions.includes(role)
   }
 
   renderMenuItem = menuConfig => {
-    const { role } = this.props.userInfo
-    const { permissions } = menuConfig
-    if (permissions && _.isArray(permissions) && !permissions.includes(role)) {
-      return null
-    }
+    // const { role } = []
+    // const { permissions } = menuConfig
+    // if (permissions && _.isArray(permissions) && !permissions.includes(role)) {
+    //   return null
+    // }
     return (
       <Menu.Item key={this.pathRoute(menuConfig.linkTo)}>
         <Link to={menuConfig.linkTo}>{ menuConfig.title }</Link>
@@ -136,13 +126,12 @@ class Nav extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    userInfo: state.user.userInfo,
     location: state.routing.location,
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return bindActionCreators({ getUserInfo }, dispatch)
+  return bindActionCreators({}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Nav)

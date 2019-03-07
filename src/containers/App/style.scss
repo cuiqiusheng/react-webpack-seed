@@ -9,13 +9,13 @@
 }
 
 .sider {
-  // width: 255px !important;
-  // max-width: 255px !important;
-  // min-width: 255px !important;
+  width: 255px !important;
+  max-width: 255px !important;
+  min-width: 255px !important;
   height: 100vh !important;
   overflow: auto !important;
   left: 0 !important;
-  background: #0c2032 !important;
+  background: #fff !important;
 
   :global(.ant-layout-sider-children) {
     overflow-x: hidden;
@@ -23,14 +23,13 @@
 }
 
 .content {
+  // width: calc(100% - 30px);
   height: calc(100vh - 80px);
   padding: 15px;
-  // background-image: linear-gradient(to bottom, #010710, #425265);
-  background: transparent;
+  // overflow: initial !important;
 }
 
 .body {
   min-height: 100vh !important;
-  background-image: linear-gradient(to bottom, #010710, #425265);
   // margin-left: 255px !important;
 }

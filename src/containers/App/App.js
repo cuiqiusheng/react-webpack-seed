@@ -23,10 +23,7 @@ const AppHeader = () => (
   </LayoutHeader>
 )
 const AppNav = () => (
-  <LayoutSider
-    className={style.sider}
-    collapsed
-  >
+  <LayoutSider className={style.sider}>
     <Nav />
   </LayoutSider>
 )

@@ -1,5 +1,5 @@
 import React from 'react'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 import { Menu, Icon, Dropdown } from 'antd'
 // import { Link } from 'react-router-dom'
 import { IntlComponent } from 'Components/Common'
@@ -7,34 +7,20 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import { logout } from 'Containers/Login/actions'
-import ModifyPassword from 'Containers/User/ModifyPassword'
+// import ModifyPassword from 'Containers/User/ModifyPassword'
 
 import LocaleSelector from './LocaleSelector'
 import style from './style.scss'
 
 class Header extends IntlComponent {
 
-  static propTypes = {
-    userInfo: PropTypes.object,
-    updateTime: PropTypes.number,
-  }
+  static propTypes = {}
 
-  static defaultProps = {
-    userInfo: {},
-    updateTime: 0,
-  }
+  static defaultProps = {}
 
   constructor(props) {
     super(props)
-    this.state = {
-      visibleModifyPassword: false,
-    }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (this.props.updateTime !== nextProps.updateTime) {
-      this.setState({ visibleModifyPassword: false })
-    }
+    this.state = {}
   }
 
   menu = () => (
@@ -48,19 +34,8 @@ class Header extends IntlComponent {
     this.props.logout()
   }
 
-  // 点击修改密码
-  updatePassword = () => {
-    this.setState({ visibleModifyPassword: true })
-  }
-
-  // 关闭弹窗
-  closeModal = () => {
-    this.setState({ visibleModifyPassword: false })
-  }
-
   render() {
-    const { userInfo } = this.props
-    const { visibleModifyPassword } = this.state
+    // const { userInfo } = this.props
     return (
       <React.Fragment>
         <section className={style.header}>
@@ -70,15 +45,11 @@ class Header extends IntlComponent {
             <Dropdown overlay={this.menu()}>
               <div className={style.userWrapper}>
                 <Icon className={style.userIcon} type="user" />
-                <span className={style.username}>{userInfo.username}</span>
+                <span className={style.username}>admin</span>
               </div>
             </Dropdown>
           </div>
         </section>
-        <ModifyPassword
-          visible={visibleModifyPassword}
-          onCancel={this.closeModal}
-        />
       </React.Fragment>
     )
   }
@@ -88,11 +59,10 @@ function mapDispatchToProps(dispatch) {
   return bindActionCreators({ logout }, dispatch)
 }
 
-function mapStateToProps(state) {
-  return {
-    userInfo: state.user.userInfo,
-    updateTime: state.user.updateTime,
-  }
-}
+// function mapStateToProps(state) {
+//   return {
+//     updateTime: state.user.updateTime,
+//   }
+// }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header)
+export default connect(null, mapDispatchToProps)(Header)

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { IntlProvider, addLocaleData } from 'react-intl'
 import en from 'react-intl/locale-data/en'
 import zh from 'react-intl/locale-data/zh'
@@ -18,5 +19,8 @@ const IntlWrapper = ({ children }) => (
     { children }
   </IntlProvider>
 )
+IntlWrapper.propTypes = {
+  children: PropTypes.node.isRequired,
+}
 
 export default IntlWrapper
