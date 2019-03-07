@@ -1,8 +1,3 @@
-/**
- * @summary 页面架构
- * @author sans
- * @date 2018-10-17
- */
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
