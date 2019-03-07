@@ -91,7 +91,7 @@ class Nav extends React.Component {
       <SubMenu key={sectionConfig.name} title={sectionConfig.title}>
         {
           sectionConfig.menus
-            .filter(this.menuAccessAllowed)
+            // .filter(this.menuAccessAllowed)
             .map(this.localeTitle)
             .map(this.renderMenuItem)
         }

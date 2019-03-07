@@ -21,9 +21,9 @@
     width: 350px;
     margin: 0 auto;
     margin-right: 20%;
-    background: rgba(0, 0, 0, 0.4);
+    background: rgba(100, 100, 100, 0.4);
     padding: 62px 65px 58px;
-    // box-shadow: 0 2px 4px 0 rgba(255, 255, 255, 0.10);
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.10);
 
     :global(.ant-form-item-label > label) {
       color: #fff !important;

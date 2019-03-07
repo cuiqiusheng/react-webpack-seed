@@ -11,38 +11,21 @@ export default [
         <FormattedMessage id="overview" />
       </span>
     ),
-    menus: [
-      { title: 'dataScreen', linkTo: '/overview/data', permissions: [ 'admin', 'user' ] },
-      { title: 'warningScreen', linkTo: '/overview/warning', permissions: [ 'admin', 'user' ] },
-      { title: 'expScreen', linkTo: '/overview/exp', permissions: [ 'admin', 'user' ] },
-      { title: 'monitorScreen', linkTo: '/overview/monitor', permissions: [ 'admin', 'user' ] },
-    ],
-    // linkTo: '/app/overview',
+    linkTo: '/app/overview',
     permissions: [ 'admin', 'user' ],
   },
   {
-    name: 'scan',
+    name: 'taskManage',
     title: (
       <span>
         <Icon type="appstore-o" />
-        <FormattedMessage id="scan" />
+        <FormattedMessage id="taskManage" />
       </span>
     ),
     menus: [
-      { title: 'createTask', linkTo: '/app/task/create/taskSettings', permissions: [ 'admin', 'user' ] },
+      { title: 'createTask', linkTo: '/app/task/create', permissions: [ 'admin', 'user' ] },
       { title: 'taskList', linkTo: '/app/task/list', permissions: [ 'admin', 'user' ] },
     ],
-    permissions: [ 'admin', 'user' ],
-  },
-  {
-    name: 'proxy',
-    title: (
-      <span>
-        <Icon type="api" />
-        <FormattedMessage id="proxy" />
-      </span>
-    ),
-    linkTo: '/app/proxy',
     permissions: [ 'admin', 'user' ],
   },
   {
@@ -76,7 +59,6 @@ export default [
       </span>
     ),
     menus: [
-      { title: 'netConfig', linkTo: '/app/system/net', permissions: [ 'admin', 'user' ] },
       { title: 'systemUpgrade', linkTo: '/app/system/upgrade', permissions: [ 'admin', 'user' ] },
       { title: 'authorizationManage', linkTo: '/app/system/authorization', permissions: [ 'admin' ] },
     ],

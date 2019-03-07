@@ -2,8 +2,9 @@
  * @summary 概览
  */
 import React from 'react'
+import { IntlComponent } from 'Components/Common'
 
-class Overview extends React.Component {
+class Overview extends IntlComponent {
 
   static propTypes = {}
 
@@ -16,7 +17,7 @@ class Overview extends React.Component {
   render() {
     return (
       <section>
-        hello, world!
+        { this.localeMessage('helloworld') }
       </section>
     )
   }
