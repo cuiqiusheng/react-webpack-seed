@@ -17,10 +17,12 @@
 ```
 
 ### 启动开发环境
-1. 安装依赖：```npm install``` 或 ```yarn install```
+1. 安装依赖：```yarn``` 或 ```npm install```
 2. 启动开发环境：```npm start```
 3. 浏览器访问：[点这里](http://127.0.0.1:9953)
 
 ### 打包
 ```npm run build```
 
+### TODO
+- [ ] 通过 webpack dll 提高编译速度
