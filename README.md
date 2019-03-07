@@ -7,7 +7,6 @@
 .
 ├── README.md               说明文档
 ├── dist                    打包文件
-├── maps                    地图文件
 ├── node_modules            依赖包
 ├── package.json            项目配置信息
 ├── postcss.config.js       postcss配置
@@ -20,7 +19,7 @@
 ### 启动开发环境
 1. 安装依赖：```npm install``` 或 ```yarn install```
 2. 启动开发环境：```npm start```
-3. 浏览器访问：[点这里](http://127.0.0.1:9951)
+3. 浏览器访问：[点这里](http://127.0.0.1:9953)
 
 ### 打包
 ```npm run build```
