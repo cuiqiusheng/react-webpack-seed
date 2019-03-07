@@ -15,12 +15,6 @@ import style from './style.scss'
 const { SubMenu } = Menu
 // const defaultOpenKeys = navNodes.map(navNode => navNode.name)
 
-// const Logo = () => (
-//   <section className={style.logo}>
-//     <FormattedMessage id="m4a1" />
-//   </section>
-// )
-
 const Logo = () => <div className={style.logo} />
 
 class Nav extends React.Component {
@@ -116,6 +110,7 @@ class Nav extends React.Component {
           theme="dark"
           selectedKeys={[ current ]}
           // defaultOpenKeys={defaultOpenKeys}
+          defaultOpenKeys={[]}
         >
           { navNodes.map(this.renderNavNode) }
         </Menu>
