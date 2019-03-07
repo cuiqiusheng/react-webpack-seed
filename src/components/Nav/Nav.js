@@ -1,0 +1,148 @@
+/**
+ * @summary 导航
+ */
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
+import { FormattedMessage } from 'react-intl'
+import { Menu } from 'antd'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+
+import { getUserInfo } from 'Containers/User/actions'
+
+import navNodes from './navConfig'
+import style from './style.scss'
+
+const { SubMenu } = Menu
+// const defaultOpenKeys = navNodes.map(navNode => navNode.name)
+
+// const Logo = () => (
+//   <section className={style.logo}>
+//     <FormattedMessage id="m4a1" />
+//   </section>
+// )
+
+const Logo = () => <div className={style.logo} />
+
+class Nav extends React.Component {
+  static propTypes = {
+    getUserInfo: PropTypes.func.isRequired,
+
+    // role: PropTypes.any,
+    // roleResources: PropTypes.object,
+    // loadRoleResources: PropTypes.func,
+    location: PropTypes.object,
+    userInfo: PropTypes.object,
+  }
+
+  static defaultProps = {
+    // role: null,
+    // roleResources: {},
+    // loadRoleResources: null,
+    location: {},
+    userInfo: {},
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      current: this.pathRoute(location.pathname)
+    }
+  }
+
+  componentWillMount() {
+    this.props.getUserInfo()
+  }
+
+  componentWillReceiveProps() {
+    if (this.pathRoute(location.pathname) !== this.state.current) {
+      this.setState({
+        current: this.pathRoute(location.pathname)
+      })
+    }
+  }
+
+  pathRoute = params => {
+    return params
+      .split('/')
+      .slice(0, 4)
+      .join('/')
+  }
+
+  localeTitle = menuConfig => {
+    return {
+      ...menuConfig,
+      title: <FormattedMessage id={menuConfig.title} />
+    }
+  }
+
+  menuAccessAllowed = menuConfig => {
+    const { role } = this.props.userInfo || []
+    const { permissions } = menuConfig
+    return permissions.includes(role)
+  }
+
+  renderMenuItem = menuConfig => {
+    const { role } = this.props.userInfo
+    const { permissions } = menuConfig
+    if (permissions && _.isArray(permissions) && !permissions.includes(role)) {
+      return null
+    }
+    return (
+      <Menu.Item key={this.pathRoute(menuConfig.linkTo)}>
+        <Link to={menuConfig.linkTo}>{ menuConfig.title }</Link>
+      </Menu.Item>
+    )
+  }
+
+  renderSubMenu = sectionConfig => {
+    return (
+      <SubMenu key={sectionConfig.name} title={sectionConfig.title}>
+        {
+          sectionConfig.menus
+            .filter(this.menuAccessAllowed)
+            .map(this.localeTitle)
+            .map(this.renderMenuItem)
+        }
+      </SubMenu>
+    )
+  }
+
+  renderNavNode = navNode => {
+    if (navNode.menus) {
+      return this.renderSubMenu(navNode)
+    }
+    return this.renderMenuItem(navNode)
+  }
+
+  render() {
+    const { current } = this.state
+    return (
+      <div className={style.wrapperNav}>
+        <Logo />
+        <Menu
+          mode="inline"
+          theme="dark"
+          selectedKeys={[ current ]}
+          // defaultOpenKeys={defaultOpenKeys}
+        >
+          { navNodes.map(this.renderNavNode) }
+        </Menu>
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state) {
+  return {
+    userInfo: state.user.userInfo,
+    location: state.routing.location,
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({ getUserInfo }, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Nav)
